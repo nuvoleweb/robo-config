@@ -1,6 +1,6 @@
 # Robo Config
 
-Robo Config enables a flexible configuration processing for Robo by adding the following features:
+Robo Config enables a flexible configuration processing for Robo by providing the following features:
 
 - Define your default configuration in `robo.yml.dist` and let developers override that locally in their `robo.yml`.
 - Allow configuration files to use properties defined within the same configuration in a Phing-like fashion.
@@ -33,7 +33,7 @@ site:
 account:
   name: "admin"
   password: !account.name
-  email !site.email
+  email: !site.email
 ```
 
 And the following `robo.yml` file:
@@ -49,7 +49,7 @@ When running:
 ./vendor/bin/robo my-command -o "site.url: http://127.0.0.1:8888"
 ```
 
-The command will receive the following configuration:
+The resulting configuration will be:
 
 ```yml
 site:
