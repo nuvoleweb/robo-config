@@ -2,6 +2,7 @@
   "name": "nuvoleweb/robo-config",
   "description": "CI/developer-friendly configuration processor for Robo.",
   "type": "robo-tasks",
+  "version": "0.0.1",
   "license": "GPL-2.0",
   "authors": [
     {
