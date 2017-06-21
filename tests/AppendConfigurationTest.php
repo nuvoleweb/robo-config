@@ -2,17 +2,60 @@
 
 namespace NuvoleWeb\Robo\Tests;
 
+use League\Container\ContainerAwareInterface;
 use NuvoleWeb\Robo\Task\Config\AppendConfiguration;
+use NuvoleWeb\Robo\Task\Config\loadTasks;
 use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;
 use Robo\Config\YamlConfigLoader;
+use League\Container\ContainerAwareTrait;
+use Symfony\Component\Console\Output\NullOutput;
+use Robo\TaskAccessor;
+use Robo\Robo;
+use Robo\Collection\CollectionBuilder;
 
 /**
  * Class AppendConfigurationTest.
  *
  * @package NuvoleWeb\Robo\Tests
  */
-class AppendConfigurationTest extends TestCase {
+class AppendConfigurationTest extends TestCase implements ContainerAwareInterface {
+
+  use loadTasks;
+  use TaskAccessor;
+  use ContainerAwareTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  function setup() {
+    $container = Robo::createDefaultContainer(null, new NullOutput());
+    $this->setContainer($container);
+  }
+
+  /**
+   * Scaffold collection builder.
+   *
+   * @return \Robo\Collection\CollectionBuilder
+   *    Collection builder.
+   */
+  public function collectionBuilder() {
+    $empty_robo_file = new \Robo\Tasks;
+    return CollectionBuilder::create($this->getContainer(), $empty_robo_file);
+  }
+
+  /**
+   * Test task run.
+   *
+   * @dataProvider settingsProvider
+   */
+  public function testRun($config_file, $source_file, $processed_file) {
+    $filename = $this->getFixturePath($source_file);
+    $config = $this->getConfig($config_file);
+
+    $command = $this->taskAppendConfiguration($filename, $config);
+    $this->assertNotEmpty($command);
+  }
 
   /**
    * Test setting processing.
@@ -21,7 +64,9 @@ class AppendConfigurationTest extends TestCase {
    */
   public function testProcess($config_file, $source_file, $processed_file) {
     $filename = $this->getFixturePath($source_file);
-    $processor = new AppendConfiguration($this->getConfig($config_file), $filename);
+    $config = $this->getConfig($config_file);
+
+    $processor = new AppendConfiguration($filename, $config);
     $content = file_get_contents($filename);
     $processed = $processor->process($content);
     $this->assertEquals($processed, trim(file_get_contents($this->getFixturePath($processed_file))));

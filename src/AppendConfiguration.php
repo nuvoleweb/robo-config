@@ -43,7 +43,7 @@ class AppendConfiguration extends Write {
   /**
    * AppendConfiguration constructor.
    */
-  public function __construct(Config $config, $filename) {
+  public function __construct($filename, Config $config) {
     parent::__construct($filename);
     $this->config = $config;
   }

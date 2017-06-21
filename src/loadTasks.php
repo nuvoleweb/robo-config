@@ -2,6 +2,7 @@
 
 namespace NuvoleWeb\Robo\Task\Config;
 
+use Robo\Config\Config;
 use Robo\Robo;
 use Symfony\Component\Console\Input\Input;
 use Symfony\Component\Console\Input\InputOption;
@@ -22,12 +23,15 @@ trait loadTasks {
    *
    * @param string $filename
    *   File path to append Robo configuration to.
+   * @param \Robo\Config\Config|null $config
+   *   Robo configuration.
    *
    * @return \NuvoleWeb\Robo\Task\Config\AppendConfiguration
    *   Append configuration task.
    */
-  protected function taskAppendConfiguration($filename) {
-    return $this->task(AppendConfiguration::class, $filename);
+  protected function taskAppendConfiguration($filename, Config $config = NULL) {
+    $config = $config ? $config : Robo::config();
+    return $this->task(AppendConfiguration::class, $filename, $config);
   }
 
   /**
