@@ -50,11 +50,13 @@ class AppendConfigurationTest extends TestCase implements ContainerAwareInterfac
    * @dataProvider settingsProvider
    */
   public function testRun($config_file, $source_file, $processed_file) {
-    $filename = $this->getFixturePath($source_file);
+    $source = $this->getFixturePath($source_file);
+    $filename = $this->getFixturePath('tmp/' . $source_file);
+    copy($source, $filename);
     $config = $this->getConfig($config_file);
-
-    $command = $this->taskAppendConfiguration($filename, $config);
+    $command = $this->taskAppendConfiguration($filename, $config)->run();
     $this->assertNotEmpty($command);
+    $this->assertEquals(trim(file_get_contents($filename)), trim(file_get_contents($this->getFixturePath($processed_file))));
   }
 
   /**
@@ -112,7 +114,7 @@ class AppendConfigurationTest extends TestCase implements ContainerAwareInterfac
    *    Fixture file path.
    */
   private function getFixturePath($name) {
-    return realpath(dirname(__FILE__) . '/fixtures/' . $name);
+    return dirname(__FILE__) . '/fixtures/' . $name;
   }
 
 }
