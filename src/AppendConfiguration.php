@@ -3,6 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config;
 
 use Robo\Config\Config;
+use Robo\Exception\TaskException;
 use Robo\Task\File\Write;
 
 /**
@@ -17,7 +18,7 @@ class AppendConfiguration extends Write {
    *
    * @var \Robo\Config\Config
    */
-  protected $config;
+  private $configObject;
 
   /**
    * Root key in YAML configuration file.
@@ -45,7 +46,7 @@ class AppendConfiguration extends Write {
    */
   public function __construct($filename, Config $config) {
     parent::__construct($filename);
-    $this->config = $config;
+    $this->configObject = $config;
   }
 
   /**
@@ -102,8 +103,12 @@ class AppendConfiguration extends Write {
     $line[] = $this->blockStart;
     $line[] = '';
 
-    foreach ($this->config->get($this->configKey) as $variable => $settings) {
-      foreach ($settings as $name => $value) {
+    if (!$this->configObject->has($this->configKey)) {
+      throw new TaskException($this, "Configuration key '{$this->configKey}' not found on current Robo configuration.");
+    }
+
+    foreach ($this->configObject->get($this->configKey) as $variable => $values) {
+      foreach ($values as $name => $value) {
         $line[] = $this->getStatement($variable, $name, $value);
       }
       $line[] = '';
