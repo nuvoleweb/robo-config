@@ -1,4 +1,15 @@
-<?
+<?php
+
+// Start settings processor block.
+
+$config["system.performance"] = array('css' => array('preprocess' => false), 'js' => array('preprocess' => false));
+
+$settings["file_public_path"] = 'files/public';
+$settings["file_private_path"] = 'files/private';
+$settings["container_yamls"] = array(0 => 'resources/services.yml');
+$settings["file_scan_ignore_directories"] = array(0 => 'node_modules',1 => 'bower_components');
+
+// End settings processor block.
 
 /**
  * @file

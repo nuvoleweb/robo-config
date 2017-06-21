@@ -35,6 +35,22 @@ trait loadTasks {
   }
 
   /**
+   * Prepend Robo YAML configuration to given PHP file as a PHP array.
+   *
+   * @param string $filename
+   *   File path to prepend Robo configuration to.
+   * @param \Robo\Config\Config|null $config
+   *   Robo configuration.
+   *
+   * @return \NuvoleWeb\Robo\Task\Config\AppendConfiguration
+   *   Append configuration task.
+   */
+  protected function taskPrependConfiguration($filename, Config $config = NULL) {
+    $config = $config ? $config : Robo::config();
+    return $this->task(PrependConfiguration::class, $filename, $config);
+  }
+
+  /**
    * Add default options.
    *
    * @param \Symfony\Component\Console\Command\Command $command
