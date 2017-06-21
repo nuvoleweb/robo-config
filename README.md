@@ -1,5 +1,7 @@
 # Robo Config
 
+[![Build Status](https://travis-ci.org/nuvoleweb/robo-config.svg?branch=master)](https://travis-ci.org/nuvoleweb/robo-config)
+
 Robo Config enables a flexible configuration processing for Robo by providing the following features:
 
 - Define your default configuration in `robo.yml.dist` and let developers override that locally in their `robo.yml`.
