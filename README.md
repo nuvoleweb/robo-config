@@ -23,9 +23,7 @@ class RoboFile extends Robo\Tasks {
 }
 ```
 
-## Example
-
-Consider having the following `robo.yml.dist` file:
+For example, consider having the following `robo.yml.dist` file:
 
 ```yml
 site:
@@ -64,15 +62,15 @@ account:
   email: "me@example.com"
 ```
 
-## Use Robo configuration in PHP files
+## Robo configuration in PHP files
 
-Robo Config exposes a task that allows to append a subset of the YAML configuration to a PHP configuration file,
-in a form of a PHP array.
+Robo Config exposes three tasks that allow to convert a YAML configuration subset into PHP array.
+Such array will be then appended, prepended or written down to a PHP destination file as an array.
 
-This might be useful for applications that have all of part of their configuration expressed as PHP files,
+This might be useful for applications that have part of their configuration expressed in a PHP file,
 like [Drupal](http://drupal.org) or [Silex](https://silex.sensiolabs.org).
 
-For example, given the following YAML portion:
+For example, the following YAML portion:
 
 ```yaml
 settings:
@@ -80,25 +78,39 @@ settings:
     system.logging:
       error_level: verbose
   settings:
-    extension_discovery_scan_tests: TRUE
-  config_directories:
-    sync: ../config/sync
+    scan_tests: TRUE
 ```
 
-By calling:
+Will be converted into:
+
+```php
+// Start settings processor block.
+
+$config["system.logging"] = array('error_level' => 'verbose');
+
+$settings["scan_tests"] = true;
+
+// End settings processor block.
+```
+
+And added to a PHP file.
+
+### Append task
+
+Given an existing `/my/config.php` file, by calling:
 
 ```php
 <?php
 class RoboFile {
 
-  public function myTask() {
+  public function appendTask() {
     $this->taskAppendConfiguration('/my/config.php')->run();  
   }
 
 }    
 ```
 
-The content of `settings:` will be rendered as a PHP array and appended to `/my/config.php` as follows:
+We will get the following result: 
 
 ```php
 <?php
@@ -109,14 +121,76 @@ The content of `settings:` will be rendered as a PHP array and appended to `/my/
 
 $config["system.logging"] = array('error_level' => 'verbose');
 
-$settings["extension_discovery_scan_tests"] = true;
-
-$config_directories["sync"] = '../config/sync';
+$settings["scan_tests"] = true;
 
 // End settings processor block.
 ```
 
-You can configure the task as follow:
+### Prepend task
+
+Given an existing `/my/config.php` file, by calling:
+
+```php
+<?php
+class RoboFile {
+
+  public function appendTask() {
+    $this->taskPrependConfiguration('/my/config.php')->run();  
+  }
+
+}    
+```
+
+We will get the following result: 
+
+```php
+<?php
+
+// Start settings processor block.
+
+$config["system.logging"] = array('error_level' => 'verbose');
+
+$settings["scan_tests"] = true;
+
+// End settings processor block.
+
+// Content of /my/config.php here...
+
+```
+
+### Write task
+
+Given a non-existing `/my/config.php` file, by calling:
+
+```php
+<?php
+class RoboFile {
+
+  public function appendTask() {
+    $this->taskWriteConfiguration('/my/config.php')->run();  
+  }
+
+}    
+```
+
+We will get the following result: 
+
+```php
+<?php
+
+// Start settings processor block.
+
+$config["system.logging"] = array('error_level' => 'verbose');
+
+$settings["scan_tests"] = true;
+
+// End settings processor block.
+
+```
+
+### Configure tasks
+
+The behaviors of all tasks above can be customized as follow:
 
 ```php
 <?php

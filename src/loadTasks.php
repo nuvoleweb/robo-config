@@ -54,7 +54,7 @@ trait loadTasks {
    * Prepend Robo YAML configuration to given PHP file as a PHP array.
    *
    * @param string $filename
-   *   File path to prepend Robo configuration to.
+   *   Destination file path.
    * @param \Robo\Config\Config|null $config
    *   Robo configuration.
    *
