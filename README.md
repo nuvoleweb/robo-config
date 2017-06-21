@@ -1,6 +1,10 @@
 # Robo Config
 
 [![Build Status](https://travis-ci.org/nuvoleweb/robo-config.svg?branch=master)](https://travis-ci.org/nuvoleweb/robo-config)
+[![Latest Stable Version](https://poser.pugx.org/nuvoleweb/robo-config/v/stable)](https://packagist.org/packages/nuvoleweb/robo-config)
+[![Total Downloads](https://poser.pugx.org/nuvoleweb/robo-config/downloads)](https://packagist.org/packages/nuvoleweb/robo-config)
+[![Latest Unstable Version](https://poser.pugx.org/nuvoleweb/robo-config/v/unstable)](https://packagist.org/packages/nuvoleweb/robo-config)
+[![License](https://poser.pugx.org/nuvoleweb/robo-config/license)](https://packagist.org/packages/nuvoleweb/robo-config)
 
 Robo Config enables a flexible configuration processing for Robo by providing the following features:
 
@@ -9,6 +13,14 @@ Robo Config enables a flexible configuration processing for Robo by providing th
 - Allow all properties to be overridden on the command line so that they can be tweaked when running continuous
   integration builds.
 - Access any configuration parameter via `$this->config('my.configuration.property`);`
+
+## Installation
+
+Install with Composer by running:
+
+```
+$ composer require nuvoleweb/robo-config
+```
 
 ## Usage
 
