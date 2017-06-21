@@ -7,7 +7,7 @@ namespace NuvoleWeb\Robo\Task\Config;
  *
  * @package NuvoleWeb\Robo\Task\Config
  */
-class PrependConfiguration extends WriteConfiguration {
+class PrependConfiguration extends BaseConfiguration {
 
   /**
    * {@inheritdoc}

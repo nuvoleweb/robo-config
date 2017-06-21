@@ -4,7 +4,7 @@ namespace NuvoleWeb\Robo\Tests;
 
 use League\Container\ContainerAwareInterface;
 use NuvoleWeb\Robo\Task\Config\AppendConfiguration;
-use NuvoleWeb\Robo\Task\Config\WriteConfiguration;
+use NuvoleWeb\Robo\Task\Config\BaseConfiguration;
 use NuvoleWeb\Robo\Task\Config\loadTasks;
 use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;
@@ -78,6 +78,19 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
   }
 
   /**
+   * Test task run.
+   *
+   * @dataProvider writeTestProvider
+   */
+  public function testTaskWriteConfiguration($config_file, $processed_file) {
+    $filename = $this->getFixturePath('tmp/' . $processed_file);
+    $config = $this->getConfig($config_file);
+    $command = $this->taskPrependConfiguration($filename, $config)->run();
+    $this->assertNotEmpty($command);
+    $this->assertEquals(trim(file_get_contents($filename)), trim(file_get_contents($this->getFixturePath($processed_file))));
+  }
+
+  /**
    * Test setting processing.
    *
    * @dataProvider appendTestProvider
@@ -115,6 +128,19 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     return [
       ['1-config.yml', '1-input.php', '1-output-prepend.php'],
       ['2-config.yml', '2-input.php', '2-output-prepend.php'],
+    ];
+  }
+
+
+  /**
+   * Data provider.
+   *
+   * @return array
+   *    Test data.
+   */
+  public function writeTestProvider() {
+    return [
+      ['3-config.yml', '3-output-write.php'],
     ];
   }
 

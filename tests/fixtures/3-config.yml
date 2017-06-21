@@ -1,0 +1,12 @@
+parameters:
+  one: two
+  three: four
+
+settings:
+  config:
+    system.logging:
+      error_level: verbose
+  settings:
+    extension_discovery_scan_tests: TRUE
+  config_directories:
+    sync: ../config/sync

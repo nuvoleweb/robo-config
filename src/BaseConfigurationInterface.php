@@ -3,11 +3,11 @@
 namespace NuvoleWeb\Robo\Task\Config;
 
 /**
- * Interface WriteConfigurationInterface.
+ * Interface BaseConfigurationInterface.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */
-interface WriteConfigurationInterface {
+interface BaseConfigurationInterface {
 
   /**
    * Process settings file.
