@@ -19,7 +19,8 @@
   },
   "autoload": {
     "psr-4": {
-      "NuvoleWeb\\Robo\\Task\\Config\\": "src"
+      "NuvoleWeb\\Robo\\Task\\Config\\": "src",
+      "NuvoleWeb\\Robo\\Tests\\": "tests"
     }
   }
 }

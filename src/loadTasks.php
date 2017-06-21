@@ -18,6 +18,19 @@ use Symfony\Component\Yaml\Yaml;
 trait loadTasks {
 
   /**
+   * Append Robo YAML configuration to given PHP file as a PHP array.
+   *
+   * @param string $filename
+   *   File path to append Robo configuration to.
+   *
+   * @return \NuvoleWeb\Robo\Task\Config\AppendConfiguration
+   *   Append configuration task.
+   */
+  protected function taskAppendConfiguration($filename) {
+    return $this->task(AppendConfiguration::class, $filename);
+  }
+
+  /**
    * Add default options.
    *
    * @param \Symfony\Component\Console\Command\Command $command

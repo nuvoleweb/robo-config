@@ -1,0 +1,16 @@
+settings:
+  config:
+    system.performance:
+      css:
+        preprocess: FALSE
+      js:
+        preprocess: FALSE
+
+  settings:
+    file_public_path: files/public
+    file_private_path: files/private
+    container_yamls:
+      - resources/services.yml
+    file_scan_ignore_directories:
+      - node_modules
+      - bower_components
