@@ -109,7 +109,6 @@ trait loadTasks {
       }
       return $value;
     });
-    $config->import($export);
 
     // Process command line overrides.
     foreach ($input->getOption('override') as $override) {
