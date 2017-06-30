@@ -8,7 +8,7 @@ use NuvoleWeb\Robo\Task\Config\BaseConfiguration;
 use NuvoleWeb\Robo\Task\Config\loadTasks;
 use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;
-use Robo\Config\YamlConfigLoader;
+use Consolidation\Config\Loader\YamlConfigLoader;
 use League\Container\ContainerAwareTrait;
 use Symfony\Component\Console\Output\NullOutput;
 use Robo\TaskAccessor;
