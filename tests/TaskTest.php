@@ -4,7 +4,6 @@ namespace NuvoleWeb\Robo\Tests;
 
 use League\Container\ContainerAwareInterface;
 use NuvoleWeb\Robo\Task\Config\AppendConfiguration;
-use NuvoleWeb\Robo\Task\Config\BaseConfiguration;
 use NuvoleWeb\Robo\Task\Config\loadTasks;
 use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;

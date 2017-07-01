@@ -95,20 +95,22 @@ trait loadTasks {
     $processor = new ConfigProcessor();
 
     // Extend and import configuration.
+    $processor->add($config->export());
     $processor->extend($loader->load('robo.yml.dist'));
     $processor->extend($loader->load($input->getOption('config')));
-    $config->import($processor->export());
 
     // Replace tokens in final configuration file.
     $export = $processor->export();
     array_walk_recursive($export, function (&$value, $key) use ($config) {
-      $value = (string) $value;
-      if (!empty($value) && $value[0] == '!') {
-        $value = substr($value, 1, strlen($value));
-        $value = $config->get($value);
+      if (is_string($value)) {
+        preg_match_all('/![A-Za-z_\-.]+/', $value, $matches);
+        foreach ($matches[0] as $match) {
+          $config_key = substr($match, 1, strlen($match));
+          $value = str_replace($match, $config->get($config_key), $value);
+        }
       }
-      return $value;
     });
+    $config->import($export);
 
     // Process command line overrides.
     foreach ($input->getOption('override') as $override) {
