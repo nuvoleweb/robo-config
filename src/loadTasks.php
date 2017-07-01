@@ -7,8 +7,8 @@ use Robo\Robo;
 use Symfony\Component\Console\Input\Input;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Command\Command;
-use Robo\Config\YamlConfigLoader;
-use Robo\Config\ConfigProcessor;
+use Consolidation\Config\Loader\YamlConfigLoader;
+use Consolidation\Config\Loader\ConfigProcessor;
 use Symfony\Component\Yaml\Yaml;
 
 /**
