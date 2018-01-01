@@ -101,6 +101,9 @@ trait loadTasks {
 
     // Replace tokens in final configuration file.
     $export = $processor->export();
+    // Load configuration with unprocessed tokens just to be able to access
+    // the static values as dot chained names.
+    $config->import($export);
     array_walk_recursive($export, function (&$value, $key) use ($config) {
       if (is_string($value)) {
         preg_match_all('/![A-Za-z_\-.]+/', $value, $matches);
@@ -110,6 +113,7 @@ trait loadTasks {
         }
       }
     });
+    // Reimport the config, this time with the tokens replaced.
     $config->import($export);
 
     // Process command line overrides.

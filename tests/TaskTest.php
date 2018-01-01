@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;
 use Consolidation\Config\Loader\YamlConfigLoader;
 use League\Container\ContainerAwareTrait;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Robo\TaskAccessor;
 use Robo\Robo;
@@ -31,6 +34,29 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
   function setup() {
     $container = Robo::createDefaultContainer(null, new NullOutput());
     $this->setContainer($container);
+  }
+
+  /**
+   * Tests token replacement.
+   *
+   * @covers \NuvoleWeb\Robo\Task\Config\loadTasks::initializeConfiguration
+   */
+  public function testTokenReplacement() {
+    $definition = new InputDefinition([
+      new InputOption('config', 'c', InputOption::VALUE_REQUIRED),
+      new InputOption('override', 'o', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL),
+    ]);
+
+    $input = new StringInput("--config='{$this->getFixturePath('config-with-tokens.yml')}'");
+    $input->bind($definition);
+    $this->initializeConfiguration($input);
+
+    // Check that static configurations are correct.
+    $this->assertEquals('bar', $this->config('foo'));
+    $this->assertEquals('some_value', $this->config('bar.baz'));
+    // Check that tokens were resolved.
+    $this->assertEquals('bar', $this->config('qux.var1'));
+    $this->assertEquals('some_value', $this->config('qux.var2'));
   }
 
   /**
