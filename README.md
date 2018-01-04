@@ -220,3 +220,19 @@ class RoboFile {
 
 }    
 ```
+
+### Standalone usage
+
+If you just want to use the PHP configuration file processing tasks above in your custom Robo application you can load
+them by including the following trait:
+
+```php
+<?php
+
+class RoboFile {
+  
+  use \NuvoleWeb\Robo\Task\Config\Php\loadTasks;
+  
+}
+```
+
