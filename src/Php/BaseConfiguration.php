@@ -1,6 +1,6 @@
 <?php
 
-namespace NuvoleWeb\Robo\Task\Config;
+namespace NuvoleWeb\Robo\Task\Config\Php;
 
 use Robo\Config\Config;
 use Robo\Exception\TaskException;

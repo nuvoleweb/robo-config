@@ -15,7 +15,7 @@ install:
 script:
   - cd $TRAVIS_BUILD_DIR
   - ./vendor/bin/grumphp run
-  - ./vendor/bin/phpunit tests
+  - ./vendor/bin/phpunit
 
 notifications:
   email: false

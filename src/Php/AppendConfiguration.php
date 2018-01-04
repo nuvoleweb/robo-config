@@ -1,6 +1,6 @@
 <?php
 
-namespace NuvoleWeb\Robo\Task\Config;
+namespace NuvoleWeb\Robo\Task\Config\Php;
 
 /**
  * Class AppendConfiguration.
