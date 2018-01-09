@@ -111,6 +111,7 @@ abstract class BaseConfiguration extends Write implements BaseConfigurationInter
     }
 
     $line[] = $this->blockEnd;
+    $line[] = '';
     return implode($line, "\n");
   }
 

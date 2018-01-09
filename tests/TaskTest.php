@@ -127,7 +127,7 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     $processor = new AppendConfiguration($filename, $config);
     $content = file_get_contents($filename);
     $processed = $processor->process($content);
-    $this->assertEquals($processed, trim(file_get_contents($this->getFixturePath($processed_file))));
+    $this->assertEquals(trim($processed), trim(file_get_contents($this->getFixturePath($processed_file))));
   }
 
   /**
