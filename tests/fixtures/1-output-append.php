@@ -10,8 +10,6 @@ $settings = [
   'three' => 'four',
 ];
 
-
-
 // Start settings processor block.
 
 $config["system.logging"] = array('error_level' => 'verbose');

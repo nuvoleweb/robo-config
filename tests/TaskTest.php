@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Robo\Config\Config;
 use Consolidation\Config\Loader\YamlConfigLoader;
 use League\Container\ContainerAwareTrait;
+use Robo\Contract\TaskInterface;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
@@ -83,6 +84,9 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     $config = $this->getConfig($config_file);
     $command = $this->taskAppendConfiguration($filename, $config)->run();
     $this->assertNotEmpty($command);
+
+    // Make sure we get the same output regardless of the number of runs.
+    $this->runTimes(20, $this->taskAppendConfiguration($filename, $config));
     $this->assertEquals(trim(file_get_contents($filename)), trim(file_get_contents($this->getFixturePath($processed_file))));
   }
 
@@ -99,6 +103,9 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     $config = $this->getConfig($config_file);
     $command = $this->taskPrependConfiguration($filename, $config)->run();
     $this->assertNotEmpty($command);
+
+    // Make sure we get the same output regardless of the number of runs.
+    $this->runTimes(20, $this->taskPrependConfiguration($filename, $config));
     $this->assertEquals(trim(file_get_contents($filename)), trim(file_get_contents($this->getFixturePath($processed_file))));
   }
 
@@ -110,8 +117,11 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
   public function testTaskWriteConfiguration($config_file, $processed_file) {
     $filename = $this->getFixturePath('tmp/' . $processed_file);
     $config = $this->getConfig($config_file);
-    $command = $this->taskPrependConfiguration($filename, $config)->run();
+    $command = $this->taskWriteConfiguration($filename, $config)->run();
     $this->assertNotEmpty($command);
+
+    // Make sure we get the same output regardless of the number of runs.
+    $this->runTimes(20, $this->taskWriteConfiguration($filename, $config));
     $this->assertEquals(trim(file_get_contents($filename)), trim(file_get_contents($this->getFixturePath($processed_file))));
   }
 
@@ -156,7 +166,6 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     ];
   }
 
-
   /**
    * Data provider.
    *
@@ -199,4 +208,19 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
     return dirname(__FILE__) . '/fixtures/' . $name;
   }
 
+  /**
+   * Run the given task for the given times
+   *
+   * @param int $times
+   *    Times task should be ran.
+   * @param \Robo\Contract\TaskInterface $task
+   *    Task to run.
+   */
+  private function runTimes($times, TaskInterface $task) {
+    $i = 20;
+    while ($i >= 0) {
+      $task->run();
+      $i--;
+    }
+  }
 }

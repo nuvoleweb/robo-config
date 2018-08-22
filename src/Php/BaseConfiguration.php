@@ -133,7 +133,7 @@ abstract class BaseConfiguration extends Write implements BaseConfigurationInter
    *   Content without setting block.
    */
   protected function sanitizeContent($content) {
-    $regex = "/^" . preg_quote($this->blockStart, '/') . ".*?" . preg_quote($this->blockEnd, '/') . "/sm";
+    $regex = '/^\n' . preg_quote($this->blockStart, '/') . ".*?" . preg_quote($this->blockEnd, '/') . '\n/sm';
     return preg_replace($regex, '', $content);
   }
 
