@@ -2,5 +2,5 @@ foo: bar
 bar:
   baz: some_value
 qux:
-  var1: !foo
-  var2: !bar.baz
+  var1: '!foo'
+  var2: '!bar.baz'
