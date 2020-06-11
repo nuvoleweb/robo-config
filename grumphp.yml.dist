@@ -1,4 +1,4 @@
-grumphp:
+parameters:
   ascii:
     failed: ~
     succeeded: ~
