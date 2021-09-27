@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
-    backupGlobals               = "true"
-    backupStaticAttributes      = "false"
-    colors                      = "true"
-    convertErrorsToExceptions   = "true"
-    convertNoticesToExceptions  = "true"
-    convertWarningsToExceptions = "true"
-    stopOnFailure               = "false"
-    syntaxCheck                 = "false"
-    bootstrap                   = "vendor/autoload.php">
+    xmlns:xsi                     = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation = "vendor/phpunit/phpunit/phpunit.xsd"
+    backupGlobals                 = "true"
+    colors                        = "true"
+    bootstrap                     = "vendor/autoload.php">
     <testsuites>
-        <testsuite>
+        <testsuite name="unit">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>

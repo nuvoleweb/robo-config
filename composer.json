@@ -2,7 +2,7 @@
   "name": "nuvoleweb/robo-config",
   "description": "CI/developer-friendly configuration processor for Robo.",
   "type": "robo-tasks",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Antonio De Marco",
@@ -10,17 +10,17 @@
     }
   ],
   "require": {
-    "consolidation/robo": "^2.1"
+    "consolidation/robo": "^3.0"
   },
   "require-dev": {
     "drupal/coder": "^8",
     "phpunit/phpunit": "^7",
-    "phpro/grumphp": "0.14.0"
+    "phpro/grumphp": "^0.22"
   },
   "autoload": {
     "psr-4": {
-      "NuvoleWeb\\Robo\\Task\\Config\\": "src",
-      "NuvoleWeb\\Robo\\Tests\\": "tests"
+      "NuvoleWeb\\Robo\\Task\\Config\\": "src/",
+      "NuvoleWeb\\Robo\\Tests\\": "tests/"
     }
   }
 }
