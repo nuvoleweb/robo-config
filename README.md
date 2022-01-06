@@ -1,6 +1,5 @@
 # Robo Config
 
-[![Build Status](https://travis-ci.org/nuvoleweb/robo-config.svg?branch=master)](https://travis-ci.org/nuvoleweb/robo-config)
 [![Latest Stable Version](https://poser.pugx.org/nuvoleweb/robo-config/v/stable)](https://packagist.org/packages/nuvoleweb/robo-config)
 [![Total Downloads](https://poser.pugx.org/nuvoleweb/robo-config/downloads)](https://packagist.org/packages/nuvoleweb/robo-config)
 [![Latest Unstable Version](https://poser.pugx.org/nuvoleweb/robo-config/v/unstable)](https://packagist.org/packages/nuvoleweb/robo-config)
