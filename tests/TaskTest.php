@@ -32,7 +32,7 @@ class TaskTest extends TestCase implements ContainerAwareInterface {
   /**
    * {@inheritdoc}
    */
-  function setup(): void {
+  protected function setUp(): void {
     $container = Robo::createDefaultContainer(null, new NullOutput());
     $this->setContainer($container);
   }

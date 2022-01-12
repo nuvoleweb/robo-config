@@ -7,10 +7,9 @@
     convertNoticesToExceptions  = "true"
     convertWarningsToExceptions = "true"
     stopOnFailure               = "false"
-    syntaxCheck                 = "false"
     bootstrap                   = "vendor/autoload.php">
     <testsuites>
-        <testsuite>
+        <testsuite name="Robo config">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
