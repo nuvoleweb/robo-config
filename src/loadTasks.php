@@ -3,7 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config;
 
 /**
- * Class loadTasks.
+ * Includes provided loadTasks classes.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */

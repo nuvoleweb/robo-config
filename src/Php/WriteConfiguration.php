@@ -3,7 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config\Php;
 
 /**
- * Class WriteConfiguration.
+ * Class to write configuration.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */

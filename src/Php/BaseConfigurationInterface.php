@@ -3,7 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config\Php;
 
 /**
- * Interface BaseConfigurationInterface.
+ * Interface of the BaseConfigurationInterface class.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */

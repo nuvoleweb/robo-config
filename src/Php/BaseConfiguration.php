@@ -7,7 +7,7 @@ use Robo\Exception\TaskException;
 use Robo\Task\File\Write;
 
 /**
- * Class BaseConfiguration.
+ * Class providing base configuration.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */

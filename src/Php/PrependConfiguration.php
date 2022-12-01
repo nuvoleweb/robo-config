@@ -3,7 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config\Php;
 
 /**
- * Class PrependConfiguration.
+ * Class to prepend configuration.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */
