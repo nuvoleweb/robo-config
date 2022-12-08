@@ -11,7 +11,7 @@ use Consolidation\Config\Loader\ConfigProcessor;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class loadTasks.
+ * Class to load Robo tasks.
  *
  * @package NuvoleWeb\Robo\Task\Config\Robo
  */

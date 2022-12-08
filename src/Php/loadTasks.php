@@ -6,7 +6,7 @@ use Robo\Config\Config;
 use Robo\Robo;
 
 /**
- * Class loadTasks.
+ * Class to load PHP tasks.
  *
  * @package NuvoleWeb\Robo\Task\Config\Php
  */
