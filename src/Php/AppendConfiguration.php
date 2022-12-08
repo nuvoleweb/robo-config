@@ -3,7 +3,7 @@
 namespace NuvoleWeb\Robo\Task\Config\Php;
 
 /**
- * Class AppendConfiguration.
+ * Class to append configuration.
  *
  * @package NuvoleWeb\Robo\Task\Config
  */

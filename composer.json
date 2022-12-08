@@ -10,17 +10,23 @@
     }
   ],
   "require": {
-    "consolidation/robo": "^3.0"
+    "consolidation/robo": "^4.0"
   },
   "require-dev": {
-    "drupal/coder": "^8",
-    "phpunit/phpunit": "^9.4",
-    "phpro/grumphp": "^1.2"
+    "drupal/coder": "^8.3.16",
+    "phpunit/phpunit": "^9.5.5",
+    "phpro/grumphp": "^1.14"
   },
   "autoload": {
     "psr-4": {
       "NuvoleWeb\\Robo\\Task\\Config\\": "./src/",
       "NuvoleWeb\\Robo\\Tests\\": "./tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "phpro/grumphp": true
     }
   }
 }
