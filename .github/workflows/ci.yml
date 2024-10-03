@@ -22,5 +22,5 @@ jobs:
       - name: test
         run: |
           docker compose up -d
-          docker compose exec -T php composer require consolidation/robo:~${{ matrix.ROBO_VERSION }} 
-          docker compose exec -T php phpunit
+          docker compose exec -u root -T php composer require consolidation/robo:~${{ matrix.ROBO_VERSION }} 
+          docker compose exec -u root -T php phpunit
