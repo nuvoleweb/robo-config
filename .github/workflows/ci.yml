@@ -1,10 +1,10 @@
 name: CI
 
-on: [push, pull_request_target]
+on: [push, pull_request]
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         ROBO_VERSION: [ "4.0", "5.0" ]
@@ -14,14 +14,12 @@ jobs:
             PHP_VERSION: "8.0"
           - ROBO_VERSION: "4.0"
             PHP_VERSION: "8.1"
-
     steps:
       - uses: actions/checkout@v2
-      - uses: php-actions/composer@v6
+      - name: test
         with:
-          command: "require consolidation/robo:~${{ matrix.ROBO_VERSION }}"
-          php_version: ${{ matrix.PHP_VERSION }}
-          version: 2
-      - uses: php-actions/phpunit@v3
-        with:
-          test_suffix: FALSE
+          PHP_VERSION: ${{ matrix.PHP_VERSION }}
+        run: |
+          docker compose up -d
+          docker compose exec -T php require consolidation/robo:~${{ matrix.ROBO_VERSION }} 
+          docker compose exec -T php phpunit
