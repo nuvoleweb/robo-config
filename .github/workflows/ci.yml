@@ -8,12 +8,10 @@ jobs:
     strategy:
       matrix:
         ROBO_VERSION: [ "4.0", "5.0" ]
-        PHP_VERSION: [ "8.2", "8.3" ]
-        include:
+        PHP_VERSION: [ "8.2", "8.3", "8.4" ]
+        exclude:
           - ROBO_VERSION: "4.0"
-            PHP_VERSION: "8.0"
-          - ROBO_VERSION: "4.0"
-            PHP_VERSION: "8.1"
+            PHP_VERSION: "8.4"
     env:
       PHP_VERSION: ${{ matrix.PHP_VERSION }}
     steps:

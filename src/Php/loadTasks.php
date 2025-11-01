@@ -23,7 +23,7 @@ trait loadTasks {
    * @return \NuvoleWeb\Robo\Task\Config\Php\AppendConfiguration
    *   Append configuration task.
    */
-  protected function taskAppendConfiguration($filename, Config $config = NULL) {
+  protected function taskAppendConfiguration($filename, ?Config $config = NULL) {
     $config = $config ? $config : Robo::config();
     return $this->task(AppendConfiguration::class, $filename, $config);
   }
@@ -39,7 +39,7 @@ trait loadTasks {
    * @return \NuvoleWeb\Robo\Task\Config\Php\AppendConfiguration
    *   Append configuration task.
    */
-  protected function taskPrependConfiguration($filename, Config $config = NULL) {
+  protected function taskPrependConfiguration($filename, ?Config $config = NULL) {
     $config = $config ? $config : Robo::config();
     return $this->task(PrependConfiguration::class, $filename, $config);
   }
@@ -55,7 +55,7 @@ trait loadTasks {
    * @return \NuvoleWeb\Robo\Task\Config\Php\AppendConfiguration
    *   Append configuration task.
    */
-  protected function taskWriteConfiguration($filename, Config $config = NULL) {
+  protected function taskWriteConfiguration($filename, ?Config $config = NULL) {
     $config = $config ? $config : Robo::config();
     return $this->task(WriteConfiguration::class, $filename, $config);
   }
